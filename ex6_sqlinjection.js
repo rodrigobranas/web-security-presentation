@@ -15,7 +15,4 @@ app.get("/report", function (req, res) {
 	res.send(query);
 });
 
-// http://localhost:3000/report?model=A3&color=blue
-// http://localhost:3000/report?model=\'; DROP TABLE CARS;--&color=blue
-
 app.listen(3000);

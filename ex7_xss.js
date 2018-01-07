@@ -1,17 +1,17 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+let express = require('express');
+let bodyParser = require('body-parser');
+let app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-var messages = [];
+let messages = [];
 
-var auth = function (req) {
+let auth = function (req) {
 	return req.headers.cookie === "sessionToken=xyz123";
 };
 
 app.post("/autenticate", function (req, res) {
-	var credentials = req.body;
+	let credentials = req.body;
 	if (credentials.username === "root" && credentials.password === "123456") {
 		res.setHeader("Set-Cookie","sessionToken=xyz123; Expires=Wed, 09 Jun 2021 10:18:14 GMT");
 	}
@@ -19,7 +19,7 @@ app.post("/autenticate", function (req, res) {
 });
 
 app.post("/message", function (req, res) {
-	var message = req.body.message;
+	let message = req.body.message;
 	messages.push(message);
 	res.redirect("/");
 });
@@ -34,4 +34,4 @@ app.get("/", function (req, res) {
 	}
 });
 
-app.listen(3000);
+app.listen(3010);

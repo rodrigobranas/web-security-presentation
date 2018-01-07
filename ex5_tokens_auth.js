@@ -1,11 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-var app = express();
+let express = require('express');
+let bodyParser = require('body-parser');
+let jwt = require('jsonwebtoken');
+let app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-var auth = function (req) {
+let auth = function (req) {
 	jwt.verify(req.headers.authorization, "AgileCode", function (user) {
 
 	});
@@ -16,15 +16,14 @@ var auth = function (req) {
 }
 
 app.post("/autenticate", function (req, res) {
-	var credentials = req.body;
+	let credentials = req.body;
 	if (credentials.username === "root" && credentials.password === "123456") {
-		var user = {
-			id: 1,
+		let user = {
+			id: 987654321,
 			name: "Rodrigo Branas"
 		};
-		var token = jwt.sign(user, "AgileCode");
+		let token = jwt.sign(user, "AgileCode");
 		res.json({
-			user: user,
 			token: token
 		});
 	}
