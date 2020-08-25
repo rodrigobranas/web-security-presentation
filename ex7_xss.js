@@ -27,11 +27,12 @@ app.post("/message", function (req, res) {
 app.get("/", function (req, res) {
 	if (auth(req)) {
 		res.statusCode = 200;
-		res.send("<html><body>" + messages.join("<br/>") + "<form action='/message' method='POST'><textarea type='text' name='message' rows='10' cols='50'></textarea><input type='submit' value='SEND'/></form></body></html>");
+		console.log(messages.filter(message => !(message.includes('<script>'))));
+		res.send("<html><body>" + messages.filter(message => !(message.includes('<script>'))).join("<br/>") + "<form action='/message' method='POST'><textarea type='text' name='message' rows='10' cols='50'></textarea><input type='submit' value='SEND'/></form></body></html>");
 	} else {
 		res.statusCode = 401;
 		res.send("<html><head><title>Login</title></head><body><form action='/autenticate' method='POST'><input type='text' name='username'/><input type='password' name='password'/><input type='submit' value='OK'/></form></html>")
 	}
 });
 
-app.listen(3010);
+app.listen(30072);

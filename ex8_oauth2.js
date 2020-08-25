@@ -7,11 +7,11 @@ let token;
 app.get('/', function (req, res) {
 	if (!token) {
 		let clientId = 'a60736726d8249140d2b';
-		let redirectUrl = 'http://localhost:3000/authorization';
+		let redirectUrl = 'http://localhost:3008/authorization';
 		let state = Math.floor(Math.random() * 10000);
 		return res.redirect(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_url=${redirectUrl}&scope=user&state=${state}`);
 	} else {
-		return res.redirect('http://localhost:3000/api');
+		return res.redirect('http://localhost:3008/api');
 	}
 });
 
@@ -20,7 +20,7 @@ app.get('/authorization', function (req, res) {
 	let clientId = 'a60736726d8249140d2b';
 	let clientSecret = '644247f7bf9cea397d0cc5ad50cca288e2ccad1d';
 	let state = 6196;
-	let redirectUrl = 'http://localhost:3000/token';
+	let redirectUrl = 'http://localhost:3008/token';
 	let form = {client_id: clientId, client_secret: clientSecret, code, state, redirect_url: redirectUrl};
 	let options = {
 		url: `https://github.com/login/oauth/access_token`,
@@ -32,7 +32,7 @@ app.get('/authorization', function (req, res) {
 	request.post(options, function (error, response, body) {
 		body = JSON.parse(body);
 		token = body.access_token;
-		res.redirect('http://localhost:3000/api');
+		res.redirect('http://localhost:3008/api');
 	});
 });
 
@@ -79,4 +79,4 @@ app.get('/emails', function (req, res) {
 	});
 });
 
-app.listen(3000);
+app.listen(3008);

@@ -1,3 +1,5 @@
+// http://localhost:3006/report?model=ecosport&color=branco';drop table cars;--
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -15,4 +17,4 @@ app.get("/report", function (req, res) {
 	res.send(query);
 });
 
-app.listen(3000);
+app.listen(3006);

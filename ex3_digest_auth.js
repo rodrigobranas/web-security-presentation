@@ -13,7 +13,7 @@ var nonce = Math.random();
 var opaque = md5(realm);
 
 var auth = function (req) {
-	var authorization = req.headers.authorization;
+	var authorization = req.headers.authorization || '';
 	if (authorization.indexOf("Digest") > -1) {
 		var credentials = authorization.replace(/Digest/g, "").replace(/ /g, "").split(",");
 		var obj = {};
@@ -40,4 +40,4 @@ app.get("/", function (req, res) {
 	}
 });
 
-app.listen(3000);
+app.listen(3003);

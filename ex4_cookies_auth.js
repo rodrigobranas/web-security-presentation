@@ -5,7 +5,7 @@ let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 let auth = function (req) {
-	return req.headers.cookie === "sessionToken=xyz123";
+	return req.headers.cookie && req.headers.cookie.includes("sessionToken=xyz123");
 }
 
 app.post("/autenticate", function (req, res) {
@@ -26,4 +26,4 @@ app.get("/", function (req, res) {
 	}
 });
 
-app.listen(3002);
+app.listen(3004);
